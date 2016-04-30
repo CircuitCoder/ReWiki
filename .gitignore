@@ -1,0 +1,7 @@
+# Intellij
+.gradle
+.idea
+wiki.iws
+
+# Building
+build
