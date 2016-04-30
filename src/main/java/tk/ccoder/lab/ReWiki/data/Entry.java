@@ -1,5 +1,6 @@
 package tk.ccoder.lab.ReWiki.data;
 
+import org.springframework.data.mongodb.core.index.TextIndexed;
 import org.springframework.data.mongodb.core.mapping.DBRef;
 import org.springframework.data.mongodb.core.mapping.Field;
 
@@ -14,7 +15,12 @@ public class Entry {
   private EntryGroup group;
 
   @Field
+  @TextIndexed(weight = 2.0f)
   private String title;
+
+  @Field
+  @TextIndexed
+  private String content;
 
   @Field
   private EntryLang lang;
@@ -25,5 +31,6 @@ public class Entry {
 
   public void setRevision(Revision rev) {
     this.current = rev;
+    this.content = rev.getContent();
   }
 }

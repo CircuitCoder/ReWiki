@@ -1,7 +1,13 @@
 # Intellij
 .gradle
 .idea
-wiki.iws
+*.iws
+*.ipr
+
+# Gradle
+/gradle
+/gradlew
+/gradlew.bat
 
 # Building
-build
+/build

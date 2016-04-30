@@ -5,6 +5,7 @@ import difflib.DiffUtils;
 import difflib.Patch;
 import org.bson.types.ObjectId;
 import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.index.TextIndexed;
 import org.springframework.data.mongodb.core.mapping.DBRef;
 import org.springframework.data.mongodb.core.mapping.Document;
 import org.springframework.data.mongodb.core.mapping.Field;
@@ -119,7 +120,7 @@ public class Revision {
 
         while (blameIterator.hasNext()) {
           Blame b = blameIterator.next();
-          if (b.start + b.length <= deltaBegin) { } // Do nothing
+          if(b.start + b.length <= deltaBegin) { } // Do nothing
           else if (b.start < deltaBegin) {
             if(b.start + b.length > deltaEnd) { // This blame covers current delta
               blameIterator.add(new Blame(
