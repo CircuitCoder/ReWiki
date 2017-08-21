@@ -1,0 +1,12 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+  <head>
+    <meta charset="UTF-8">
+    <title>页面不存在!</title>
+  </head>
+  <body>
+    <h1>页面不存在!</h1>
+    <p>抱歉,我们没有找到您所请求的页面: <span th:text = "${lang.getName()}"></span> - <span th:text="${title}"></span></p>
+    <p>您可以<a th:href="|/${lang.getAbbr()}/${title.replace(' ', '_')}/create|">点击此处</a>创建该页面</p>
+  </body>
+</html>

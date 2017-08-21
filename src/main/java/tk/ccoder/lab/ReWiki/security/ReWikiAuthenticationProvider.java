@@ -32,7 +32,7 @@ public class ReWikiAuthenticationProvider implements AuthenticationProvider {
 
         Account result = mongo.findOne(new Query(Criteria.where("email").is(email)), Account.class);
         if(result.validatePassword(passwd)) {
-            Authentication auth = new UsernamePasswordAuthenticationToken(email, passwd, new ArrayList<>());
+            Authentication auth = new UsernamePasswordAuthenticationToken(result, passwd, new ArrayList<>());
             return auth;
         } else {
             return null;

@@ -14,7 +14,6 @@ import static org.hamcrest.core.Every.everyItem;
 import static org.hamcrest.core.IsEqual.equalTo;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertThat;
-import static org.junit.Assert.assertTrue;
 
 /**
  * Created by CircuitCoder on 4/30/16.
@@ -29,6 +28,8 @@ public class RevisionTest {
     Account a = new Account("a", "a@example.com");
     Account b = new Account("b", "b@example.com");
 
+    Entry e = new Entry(EntryLang.zh_CN, "Test");
+
     String content1 = "# Some title\r\n" +
             "> Blockqote\r\n" +
             "\r\n" +
@@ -41,8 +42,8 @@ public class RevisionTest {
             "- 1.5\r\n" +
             "- 2\r\n";
 
-    Revision rev1 = new Revision(null, a, content1, "Initial");
-    Revision rev2 = new Revision(rev1, b, content2, "Modify");
+    Revision rev1 = new Revision(null, e, a, content1, "Initial");
+    Revision rev2 = new Revision(rev1, e, b, content2, "Modify");
 
     List<Revision.Blame> blame1 = rev1.getBlame();
     assertEquals("Rev1 should has 1 blame record", 1, rev1.getBlame().size());

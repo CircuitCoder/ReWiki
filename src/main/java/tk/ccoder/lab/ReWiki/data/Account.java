@@ -37,7 +37,7 @@ public class Account {
 
   public boolean validatePassword(String password) {
     try {
-      return this.password == this.hashPassword(password);
+      return this.password.equals(this.hashPassword(password));
     } catch(Exception e) {
       return false;
     }

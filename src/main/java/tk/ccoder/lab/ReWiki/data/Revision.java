@@ -53,6 +53,9 @@ public class Revision {
   @Id
   private ObjectId id;
 
+  @DBRef(lazy = true)
+  private Entry entry;
+
   @DBRef
   private Account author;
 
@@ -66,12 +69,12 @@ public class Revision {
   private List<Blame> blame = new LinkedList<>();
 
   // Parent revision
-  @DBRef(lazy = true)
-  private Revision parent;
+  @Field
+  private ObjectId parent;
 
   // Merged from
-  @DBRef(lazy = true)
-  private Revision merge;
+  @Field
+  private ObjectId merge;
 
   /**
    * Create a normal revision
@@ -80,12 +83,12 @@ public class Revision {
    * @param content The NEW content of the entry
    * @param comment The comment of this commit
    */
-  public Revision(Revision parent, Account author, String content, String comment) {
+  public Revision(Revision parent, Entry entry, Account author, String content, String comment) {
     this.author = author;
     this.content = content;
     this.comment = comment;
-    this.parent = parent;
-    this.id = new ObjectId();
+    this.parent = parent != null ? parent.getRef() : null;
+    this.entry = entry;
 
     // Produce blame
     if(parent != null) {
@@ -226,5 +229,9 @@ public class Revision {
 
   public ObjectId getRef() {
     return id;
+  }
+
+  public Entry getEntry() {
+    return entry;
   }
 }

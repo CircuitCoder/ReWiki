@@ -33,7 +33,9 @@ dependencies {
 	compile('org.springframework.boot:spring-boot-starter-web')
 	compile('org.springframework.boot:spring-boot-starter-security')
 	compile('com.googlecode.java-diff-utils:diffutils:1.3.0')
-	testCompile('org.springframework.boot:spring-boot-starter-test') 
+	compile('org.pegdown:pegdown:1.6.0')
+	compile('org.jsoup:jsoup:1.9.1')
+	testCompile('org.springframework.boot:spring-boot-starter-test')
 }
 
 

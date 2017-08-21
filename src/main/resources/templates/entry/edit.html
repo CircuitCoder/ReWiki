@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+  <head>
+    <meta charset="UTF-8">
+    <title th:text="|编辑 - ${title}|"> </title>
+  </head>
+  <body>
+    <form method="POST" th:action="|/${lang.getAbbr()}/${title.replace(' ','_')?parent=${revision.getRef()}|" th:object="${commit}">
+      <textarea rows="10" th:field="*{content}"></textarea>
+      <input th:field="*{comment}">
+      <input th:field="*{parent}" disabled>
+      <button type="submit">提交</button>
+    </form>
+  </body>
+</html>
